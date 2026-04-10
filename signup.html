@@ -86,6 +86,26 @@ display:none;
     justify-content: center;
     font-size: 14px;
 }
+.header-group {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* CENTER horizontally */
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.logo {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 0; /* remove left margin */
+}
+
+.header-group h1 {
+    margin: 0;
+    font-size: 24px;
+}
 </style>
 </head>
 
@@ -93,7 +113,11 @@ display:none;
 
 <div class="signup-card">
 <button class="theme-btn" onclick="toggleTheme()">🌓</button>
-<h1>CasaCraft</h1>
+ <div class="header-group">
+                <img src="C:\Users\Prachi\OneDrive\Desktop\dreamroom\logo.jpeg" class="logo" alt="Logo">
+                <h1>CasaCraft</h1>
+            </div>
+
 
 <form id="signupForm">
 <input type="text" id="fullName" placeholder="Full Name" required>
