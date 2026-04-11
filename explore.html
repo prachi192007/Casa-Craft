@@ -222,6 +222,40 @@ scroll-behavior:smooth;
     background: rgba(255, 255, 255, 0.1);
     transform: translateY(-1px);
 }
+/* DARK MODE STYLES */
+body.dark {
+    background: linear-gradient(rgba(0,0,0,.85),rgba(0,0,0,.85)),
+    url("https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=1600&q=80") center/cover no-repeat;
+}
+
+body.dark .card-container {
+    background: #1a1a1a;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+}
+
+body.dark .content {
+    background: #121212;
+}
+
+body.dark .search, 
+body.dark .chip, 
+body.dark .card {
+    background: #242424;
+    border-color: #333;
+    color: white;
+}
+
+body.dark .search input {
+    color: white;
+}
+
+body.dark .title {
+    color: #eee;
+}
+
+body.dark .header {
+    background: #0f1a14; /* Slightly darker green for dark mode */
+}
 </style>
 </head>
 <body>
@@ -237,9 +271,12 @@ scroll-behavior:smooth;
 <div class="card-container">
 
 <div class="header">
-    <div class="back-arrow" onclick="location.href='de.html'" title="Back to Home">←</div>
+    <div class="back-arrow" onclick="location.href='index.html'" title="Back to Home">←</div>
     <h2>Explore</h2>
     <div class="nav-links" style="display: flex; align-items: center; gap: 15px;">
+       <button onclick="toggleTheme()" style="background: transparent; border: 1px solid white; color: white; border-radius: 50%; width: 35px; height: 35px; cursor: pointer; display: flex; align-items: center; justify-content: center;">
+        🌓
+    </button>
         <button onclick="location.href='cp.html'" style="padding: 8px 15px; border-radius: 8px; border: 1px solid white; background: transparent; color: white; font-size: 13px; cursor: pointer; font-weight: 500;">
             Contact Engineers
         </button>
@@ -265,13 +302,7 @@ scroll-behavior:smooth;
 
 <div class="grid">
 
-<div class="card" data-type="Modern living">
-<img src="https://jumanji.livspace-cdn.com/magazine/wp-content/uploads/2019/09/16191216/Contemporary-Living-Room-Easy-Functionality.jpg">
-<div class="card-body">
-<div class="title">Modern Living</div>
-<div class="like" onclick="like(this)">♡</div>
-</div>
-</div>
+
 
 <div class="card" data-type="Modern living">
 <img src="https://artfasad.com/wp-content/uploads/2023/12/bright-living-room-ideas-9.jpg">
@@ -1297,6 +1328,9 @@ scroll-behavior:smooth;
 }
 // Check localStorage on load to keep hearts active
 document.addEventListener("DOMContentLoaded", () => {
+    if (localStorage.getItem('theme') === 'dark') {
+        document.body.classList.add('dark');
+    }
     const likedImages = JSON.parse(localStorage.getItem('likedImages')) || [];
     document.querySelectorAll('.card').forEach(card => {
         const src = card.querySelector('img').src;
@@ -1352,7 +1386,8 @@ function searchCards(text){
 }
 
 function toggleTheme(){
- document.body.classList.toggle("dark");
+    const isDark = document.body.classList.toggle("dark");
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
 }
 
 </script>
