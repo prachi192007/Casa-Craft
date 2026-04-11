@@ -1669,6 +1669,30 @@
                         
     };
 
+
+    //...........
+    function saveToProfile() {
+        const img = document.getElementById("resultImg");
+        if (!img.src || img.style.display === "none") {
+            alert("Please generate a design first!");
+            return;
+        }
+        const currentFilter = window.getComputedStyle(img).filter;
+        const designData = { url: img.src, filter: currentFilter };
+        let saved = JSON.parse(localStorage.getItem('downloadedDesigns')) || [];
+        const isAlreadySaved = saved.some(item => item.url === designData.url && item.filter === designData.filter);
+
+        if (!isAlreadySaved) {
+            saved.push(designData);
+            localStorage.setItem('downloadedDesigns', JSON.stringify(saved));
+            alert("Design saved with filters to your Profile!");
+        } else {
+            alert("This specific design is already in your profile!");
+        }
+    }
+
+                    
+
                                                             
 
 
